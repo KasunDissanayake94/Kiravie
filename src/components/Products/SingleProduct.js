@@ -1,8 +1,4 @@
-/*
- ** Author: Santosh Kumar Dash
- ** Author URL: http://santoshdash.epizy.com/
- ** Github URL: https://github.com/quintuslabs/fashion-cube
- */
+
 
 import React from "react";
 import jumpTo from "../../modules/Navigation";
@@ -14,7 +10,7 @@ function SingleProduct(props) {
       <div
         className="product discount product_filter"
         onClick={() =>
-          jumpTo(`/fashion-cube/single-product/${productItem._id}`)
+          jumpTo(`/kiravie/single-product/${productItem._id}`)
         }
       >
         <div className="product_image">
