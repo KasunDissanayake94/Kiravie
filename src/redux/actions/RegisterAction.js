@@ -1,18 +1,21 @@
 
 
 import { register } from "../../ServerRequest";
+import {registerWithEmailAndPassword} from "../../ServerRequest/auth";
 
 export const userRegister = (
-  fullname,
+  firstName,
+  lastName,
+  address,
+  phone,
   email,
-  password,
-  verifyPassword
+  password
 ) => dispatch => {
   dispatch({
     type: POST_REGISTER_BEGIN
   });
 
-  return register(fullname, email, password, verifyPassword)
+  return registerWithEmailAndPassword(firstName, lastName, address, phone, email, password)
     .then(res => {
       dispatch({
         type: POST_REGISTER_SUCCESS,

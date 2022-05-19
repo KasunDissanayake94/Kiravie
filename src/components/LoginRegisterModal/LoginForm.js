@@ -41,6 +41,7 @@ class LoginForm extends Component {
       .userLogin(email, password)
       .then(res => {
         console.log(res);
+        alert("success")
         this.setState({ loading: false });
         window.location.reload();
       })

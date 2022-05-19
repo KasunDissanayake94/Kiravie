@@ -1,12 +1,13 @@
 
 
 import { login } from "../../ServerRequest";
+import {logInWithEmailAndPassword} from "../../ServerRequest/auth";
 
 export const userLogin = (email, password) => dispatch => {
   dispatch({
     type: LOGIN_BEGIN
   });
-  return login(email, password)
+  return logInWithEmailAndPassword(email, password)
     .then(res => {
       dispatch({
         type: LOGIN_SUCCESS,

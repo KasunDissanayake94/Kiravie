@@ -13,7 +13,10 @@ class RegisterForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      firstName: "",
+      lastName: "",
+      address: "",
+      phone: "",
       email: "",
       password: ""
     };
@@ -24,7 +27,7 @@ class RegisterForm extends Component {
   };
 
   handleSubmit = () => {
-    const { name, email, password } = this.state;
+    const { firstName, lastName, address, phone, email, password } = this.state;
     if (!Validator(name, DEFAULT_RULE)) {
       console.log("Name Error");
       return;
@@ -39,7 +42,7 @@ class RegisterForm extends Component {
     }
     this.setState({ loading: true });
     this.props
-      .userRegister(name, email, password, password)
+      .userRegister(firstName, lastName, address, phone, email, password)
       .then(res => {
         console.log(res);
         this.props.loginClicked();
@@ -60,10 +63,10 @@ class RegisterForm extends Component {
             <input
               type="text"
               className="form-control"
-              placeholder="Name "
-              id="name"
-              name="name"
-              value={this.state.name}
+              placeholder="First Name "
+              id="firstName"
+              name="firstName"
+              value={this.state.firstName}
               onChange={this.handleChange}
               autoComplete="false"
             />
@@ -72,9 +75,23 @@ class RegisterForm extends Component {
 
           <div className="form-group ">
             <input
+                type="text"
+                className="form-control"
+                placeholder="Last Name "
+                id="lastName"
+                name="lastName"
+                value={this.state.lastName}
+                onChange={this.handleChange}
+                autoComplete="false"
+            />
+            <i className="fa fa-user"></i>
+          </div>
+
+          <div className="form-group ">
+            <input
               type="text"
               className="form-control"
-              placeholder="Email "
+              placeholder="Email Address"
               id="email"
               name="email"
               value={this.state.email}
@@ -84,12 +101,40 @@ class RegisterForm extends Component {
             <i className="fa fa-envelope"></i>
           </div>
 
+          <div className="form-group ">
+            <input
+                type="text"
+                className="form-control"
+                placeholder="Address "
+                id="address"
+                name="address"
+                value={this.state.address}
+                onChange={this.handleChange}
+                autoComplete="false"
+            />
+            <i className="fa fa-envelope"></i>
+          </div>
+
+          <div className="form-group ">
+            <input
+                type="text"
+                className="form-control"
+                placeholder="Phone Number "
+                id="phone"
+                name="phone"
+                value={this.state.phone}
+                onChange={this.handleChange}
+                autoComplete="false"
+            />
+            <i className="fa fa-envelope"></i>
+          </div>
+
           <div className="form-group log-status">
             <input
               type="password"
               className="form-control"
               placeholder="Password"
-              id="Passwod"
+              id="password"
               name="password"
               value={this.state.password}
               onChange={this.handleChange}
