@@ -28,7 +28,19 @@ class RegisterForm extends Component {
 
   handleSubmit = () => {
     const { firstName, lastName, address, phone, email, password } = this.state;
-    if (!Validator(name, DEFAULT_RULE)) {
+    if (!Validator(firstName, DEFAULT_RULE)) {
+      console.log("Name Error");
+      return;
+    }
+    if (!Validator(lastName, DEFAULT_RULE)) {
+      console.log("Name Error");
+      return;
+    }
+    if (!Validator(address, DEFAULT_RULE)) {
+      console.log("Name Error");
+      return;
+    }
+    if (!Validator(phone, DEFAULT_RULE)) {
       console.log("Name Error");
       return;
     }

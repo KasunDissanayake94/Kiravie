@@ -68,7 +68,7 @@ class MobileMenu extends Component {
               <ul className="menu_selection">
                 <li>
                   <a href="#">
-                    <i className="fa fa-sign-in" aria-hidden="true"></i>Sign In
+                    <i className="fa fa-sign-in" aria-hidden="true"></i>zSign In
                   </a>
                 </li>
                 <li>

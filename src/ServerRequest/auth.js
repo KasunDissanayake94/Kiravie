@@ -7,6 +7,7 @@ import {
     createUserWithEmailAndPassword,
     sendPasswordResetEmail,
     signOut,
+    onAuthStateChanged
 } from "firebase/auth";
 import {
     getFirestore,
@@ -16,6 +17,7 @@ import {
     where,
     addDoc,
 } from "firebase/firestore";
+import firebase from "firebase/compat";
 
 
 const firebaseConfig = {
@@ -33,6 +35,8 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
+
+
 const signInWithGoogle = async () => {
     try {
         const res = await signInWithPopup(auth, googleProvider);
@@ -52,12 +56,13 @@ const signInWithGoogle = async () => {
         alert(err.message);
     }
 };
+
+
 const logInWithEmailAndPassword = async (email, password) => {
     try {
         await signInWithEmailAndPassword(auth, email, password);
     } catch (err) {
         console.error(err);
-        alert(err.message);
     }
 };
 const registerWithEmailAndPassword = async (firstName, lastName, address, phone, email, password) => {
@@ -76,6 +81,8 @@ const registerWithEmailAndPassword = async (firstName, lastName, address, phone,
         alert(err.message);
     }
 };
+
+
 const sendPasswordReset = async (email) => {
     try {
         await sendPasswordResetEmail(auth, email);
@@ -85,9 +92,27 @@ const sendPasswordReset = async (email) => {
         alert(err.message);
     }
 };
+
+
 const logout = () => {
+    localStorage.clear(); //for localStorage
+    sessionStorage.clear(); //for sessionStorage
     signOut(auth);
+
 };
+
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        const uid = user.uid;
+        localStorage.setItem('user', JSON.stringify(user));
+        console.log("User:" + user);
+    } else {
+        console.log("User logout");
+    }
+});
+
+
 export {
     auth,
     db,

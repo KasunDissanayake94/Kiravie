@@ -41,7 +41,7 @@ class LoginForm extends Component {
       .userLogin(email, password)
       .then(res => {
         console.log(res);
-        alert("success")
+        // localStorage.setItem('user', JSON.stringify(res.user));
         this.setState({ loading: false });
         window.location.reload();
       })

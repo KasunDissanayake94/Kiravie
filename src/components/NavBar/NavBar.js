@@ -1,11 +1,13 @@
 
 
-import React, { Component } from "react";
+import React, {Component, useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import HomeCartView from "../HomeCartView";
 import MobileMenu from "../MobileMenu";
 import device, { size } from "../../modules/mediaQuery";
 import MediaQuery from "react-responsive";
+import "firebase/auth";
+
 
 class NavBar extends Component {
   constructor(props) {
@@ -15,6 +17,7 @@ class NavBar extends Component {
       activeclass: false,
     };
   }
+
 
   componentDidMount() {
     if (Object.keys(this.props.cart).length < 1) {
@@ -29,8 +32,16 @@ class NavBar extends Component {
   handleMenuClicked = () => {
     this.setState({ activeclass: !this.state.activeclass });
   };
+
+
   render() {
     const { departments, cart } = this.props;
+
+    // useEffect(() => {
+    //   onAuthStateChanged(auth, (user) => {
+    //     setCurrentUser(user)
+    //   })
+    // }, [])
 
     return (
       <div className="main_nav_container">
@@ -92,6 +103,7 @@ class NavBar extends Component {
                   <li>
                     <a href="#">
                       <i className="fa fa-user" aria-hidden="true"></i>
+                      <p></p>
                     </a>
                   </li>
                   <li className="checkout">

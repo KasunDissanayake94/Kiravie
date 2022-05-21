@@ -4,13 +4,14 @@ import React, { Component } from "react";
 import LoginRegister from "../LoginRegisterModal";
 
 import Auth from "../../modules/Auth";
+import {auth, logout} from "../../ServerRequest/auth";
 
 class TopNavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modalShow: false,
-      login: true
+      login: true,
     };
   }
   showHideModal = () => {
@@ -25,7 +26,7 @@ class TopNavBar extends Component {
   };
 
   logout = () => {
-    Auth.logout();
+    logout();
     window.location.reload();
   };
 
@@ -82,12 +83,11 @@ class TopNavBar extends Component {
                       </li>
                     </ul>
                   </li>
-                  {Auth.getUserDetails() !== undefined &&
-                  Auth.getUserDetails() !== null &&
-                  Auth.getToken() !== undefined ? (
+                  {
+                    JSON.parse(localStorage.getItem("user")) !== null ? (
                     <li className="account">
                       <a href="#">
-                        {`Welcome ${Auth.getUserDetails().user_name}`}
+                        {`Welcome ${JSON.parse(localStorage.getItem("user")).email}`}
                         <i className="fa fa-angle-down"></i>
                       </a>
                       <ul className="account_selection">
