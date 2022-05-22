@@ -34,6 +34,11 @@ var routes = [
     layout: BaseLayout,
     component: CategoryContainer,
   },
+  {
+    path: "/kiravie/shops/",
+    layout: BaseLayout,
+    
+  },
 ];
 
 export default routes;

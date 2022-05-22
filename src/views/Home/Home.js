@@ -61,6 +61,7 @@ class Home extends Component {
     const { products, departments } = this.props;
     return (
       <div>
+        
         <HomeBanner />
         <CategoryBanner />
         {products ? (

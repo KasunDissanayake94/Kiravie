@@ -1,16 +1,20 @@
 
 
 import API from "../../axios/API";
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { db } from "../../ServerRequest/auth";
+import { FireService } from "../../fireservice/FireService";
 
 export const getAllProducts = () => dispatch => {
+  console.log("===============================");
+  
   dispatch({
     type: GET_ALL_PRODUCTS_BEGIN
   });
-  return API({
-    method: "GET",
-    url: `/products`
-  })
+  
+  return FireService.getAll(db,"product")
     .then(res => {
+      console.log(res);
       dispatch({
         type: GET_ALL_PRODUCTS_SUCCESS,
         payload: res
@@ -25,6 +29,30 @@ export const getAllProducts = () => dispatch => {
       return error;
     });
 };
+
+// export const getAllProducts = () => dispatch => {
+//   dispatch({
+//     type: GET_ALL_PRODUCTS_BEGIN
+//   });
+//   return API({
+//     method: "GET",
+//     url: `/products`
+//   })
+//     .then(res => {
+//       dispatch({
+//         type: GET_ALL_PRODUCTS_SUCCESS,
+//         payload: res
+//       });
+//       return res;
+//     })
+//     .catch(error => {
+//       dispatch({
+//         type: GET_ALL_PRODUCTS_FAIL,
+//         payload: { error }
+//       });
+//       return error;
+//     });
+// };
 
 export const getProduct = id => dispatch => {
   dispatch({
