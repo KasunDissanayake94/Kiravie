@@ -3,6 +3,7 @@ import {
     query,
     getDocs,
     where,
+    collection,
     addDoc,
 } from "firebase/firestore";
 
@@ -10,14 +11,12 @@ import {
  export class FireService{
     
   static async  getAll(db,collection_name) {
-        console.log("CAL : getAll");
-        const response = db.collection(collection_name);
-        const data = await response.get();
-        data.docs.forEach(item=>{
-          console.log(item.data());
-        })
-
-        return  data.docs;
+        let data=[];
+        const querySnapshot = await getDocs(collection(db, collection_name));
+        querySnapshot.forEach((doc) => {
+        data.push(doc._document.data.value.mapValue.fields);
+        });
+        return data;
 
       }
 
